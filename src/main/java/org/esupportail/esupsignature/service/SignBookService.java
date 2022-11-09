@@ -1406,7 +1406,9 @@ public class SignBookService {
                                 addUserInTeam(systemUser.getId(), signBook.getId());
                             }
                             int i = 0;
-                            for (String metadataKey : metadatas.keySet()) {
+                            List<String> metadataSortedKey = new ArrayList<>(metadatas.keySet());
+                            Collections.sort(metadataSortedKey);
+                            for (String metadataKey : metadataSortedKey) {
                                 String[] keySplit = metadataKey.split("_");
                                 if (keySplit[0].equals("sign") && keySplit[1].contains("step")) {
                                     try {
