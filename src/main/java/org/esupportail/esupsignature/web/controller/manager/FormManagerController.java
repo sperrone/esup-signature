@@ -200,7 +200,7 @@ public class FormManagerController {
     @PreAuthorize("@preAuthorizeService.formManager(#id, #authUserEppn)")
     public String deleteForm(@PathVariable("id") Long id, @ModelAttribute("authUserEppn") String authUserEppn, RedirectAttributes redirectAttributes) {
         formService.deleteForm(id);
-        redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le formulaire à bien été supprimé"));
+        redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le formulaire a bien été supprimé"));
         return "redirect:/manager/forms";
     }
 

@@ -262,7 +262,7 @@ public class SignRequestController {
                     redirectAttributes.addFlashAttribute("message", new JsonMessage("warn", signBookStringMap.values().toArray()[0].toString()));
                 } else {
                     if(userSignFirst == null || !userSignFirst) {
-                        redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Votre demande à bien été envoyée"));
+                        redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Votre demande a bien été envoyée"));
                     }
                 }
                 long signRequestId = signBookStringMap.keySet().iterator().next().getSignRequests().get(0).getId();
@@ -284,7 +284,7 @@ public class SignRequestController {
     @PostMapping(value = "/refuse/{id}")
     public String refuse(@ModelAttribute("userEppn") String userEppn, @ModelAttribute("authUserEppn") String authUserEppn, @PathVariable("id") Long id, @RequestParam(value = "comment") String comment, @RequestParam(value = "redirect") String redirect, RedirectAttributes redirectAttributes) throws EsupSignatureMailException, EsupSignatureException {
         signBookService.refuse(id, comment, userEppn, authUserEppn);
-        redirectAttributes.addFlashAttribute("messageInfos", "La demandes à bien été refusée");
+        redirectAttributes.addFlashAttribute("messageInfos", "La demande a bien été refusée");
         if(redirect.equals("end")) {
             return "redirect:/user/signbooks/";
         } else {
@@ -344,7 +344,7 @@ public class SignRequestController {
                                  RedirectAttributes redirectAttributes) throws EsupSignatureIOException {
         logger.info("start add attachment");
         if(signRequestService.addAttachement(multipartFiles, link, id)) {
-            redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "La piece jointe à bien été ajoutée"));
+            redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "La piece jointe a bien été ajoutée"));
         } else {
             redirectAttributes.addFlashAttribute("message", new JsonMessage("error", "Aucune pièce jointe n'a été ajoutée. Merci de contrôle la validité du document"));
         }
@@ -356,7 +356,7 @@ public class SignRequestController {
     public String removeAttachement(@ModelAttribute("userEppn") String userEppn, @ModelAttribute("authUserEppn") String authUserEppn, @PathVariable("id") Long id, @PathVariable("attachementId") Long attachementId, RedirectAttributes redirectAttributes) {
         logger.info("start remove attachment");
         signRequestService.removeAttachement(id, attachementId, redirectAttributes);
-        redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "La pieces jointe a été supprimée"));
+        redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "La pièce jointe a été supprimée"));
         return "redirect:/user/signrequests/" + id;
     }
 
@@ -415,7 +415,7 @@ public class SignRequestController {
             if(comment != null && !comment.isEmpty()) {
                 signRequestService.addPostit(id, comment, userEppn, authUserEppn);
             }
-            redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Votre demande à bien été transmise"));
+            redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Votre demande a bien été transmise"));
         } catch (EsupSignatureException e) {
             logger.error(e.getMessage(), e);
             redirectAttributes.addFlashAttribute("message", new JsonMessage("error", e.getMessage()));

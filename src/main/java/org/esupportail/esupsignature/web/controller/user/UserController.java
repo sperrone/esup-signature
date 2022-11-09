@@ -113,7 +113,7 @@ public class UserController {
 	public String removeKeystore(@ModelAttribute("authUserEppn") String authUserEppn, Model model, RedirectAttributes redirectAttributes) {
 		User authUser = userService.getUserByEppn(authUserEppn);
 		authUser.setKeystore(null);
-		redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le magasin de clés à bien été supprimé"));
+		redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le magasin de clés a bien été supprimé"));
 		return "redirect:/user/users/";
 	}
 
@@ -158,7 +158,7 @@ public class UserController {
 	@DeleteMapping("/delete-user-propertie/{id}")
 	public String deleteUserPropertie(@ModelAttribute("authUserEppn") String authUserEppn, @PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		userPropertieService.delete(authUserEppn, id);
-		redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le favori à bien été supprimé"));
+		redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le favori a bien été supprimé"));
 		return "redirect:/user/users/properties";
 	}
 
@@ -167,7 +167,7 @@ public class UserController {
 		FieldPropertie fieldPropertie = fieldPropertieService.getById(id);
 		if(fieldPropertie.getUser().getEppn().equals(authUserEppn)) {
 			fieldPropertieService.delete(id, key);
-			redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le favori à bien été supprimé"));
+			redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le favori a bien été supprimé"));
 		}
 		return "redirect:/user/users/properties";
 	}
@@ -231,7 +231,7 @@ public class UserController {
 	public String transfert(@ModelAttribute("authUserEppn") String authUserEppn, RedirectAttributes redirectAttributes) {
 		int result = signBookService.transfer(authUserEppn);
 		if(result > 0) {
-			redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Le transfert des demandes à bien été effectué. " + result + " demande(s) transférées."));
+			redirectAttributes.addFlashAttribute("message", new JsonMessage("success", "Le transfert des demandes a bien été effectué. " + result + " demande(s) transférées."));
 		} else {
 			redirectAttributes.addFlashAttribute("message", new JsonMessage("error", "Aucune modification n'a été effectuée"));
 		}

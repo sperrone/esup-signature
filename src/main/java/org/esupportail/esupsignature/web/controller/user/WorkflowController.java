@@ -119,7 +119,7 @@ public class WorkflowController {
         Workflow workflow = workflowService.getById(id);
         try {
             workflowService.delete(workflow);
-            redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le circuit à bien été supprimé"));
+            redirectAttributes.addFlashAttribute("message", new JsonMessage("info", "Le circuit a bien été supprimé"));
         } catch (EsupSignatureException e) {
             redirectAttributes.addFlashAttribute("message", new JsonMessage("error", e.getMessage()));
         }
