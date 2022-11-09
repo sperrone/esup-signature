@@ -30,7 +30,7 @@ public class LdapPersonService {
     private PersonLdapLightRepository personLdapLightRepository;
 
     public List<PersonLdap> search(String searchString) {
-        return personLdapRepository.findByDisplayNameStartingWithIgnoreCaseOrCnStartingWithIgnoreCaseOrUidStartingWithOrMailStartingWith(searchString, searchString, searchString, searchString);
+        return personLdapRepository.findByMailContaining(searchString);
     }
 
     public List<PersonLdapLight> searchLight(String searchString) {
